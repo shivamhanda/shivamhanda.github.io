@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
+
+
+<html>
+<!-- v:10.0.7.121 -->
+<head id="ctl00_HeadTag"><meta http-equiv="X-UA-Compatible" content="IE=9" /><meta name="assetType" content="Web Page" /><title>
+	Missing Page
+</title><link rel="alternate" type="application/rss+xml" title="Microsoft Research - Downloads" href="http://research.microsoft.com/rss/downloads.xml" />
+<link rel="alternate" type="application/rss+xml" title="Microsoft Research - News" href="http://research.microsoft.com/rss/news.xml" />
+<link rel="alternate" type="application/rss+xml" title="Microsoft Research - Publications" href="http://research.microsoft.com/rss/publications.xml" />
+<link rel="alternate" type="application/rss+xml" title="Microsoft Research - Research Lectures" href="http://research.microsoft.com/rss/researchLectures.xml" />
+<link rel="alternate" type="application/rss+xml" title="Microsoft Research - Visiting Speaker Lectures" href="http://research.microsoft.com/rss/visitingSpeakers.xml" />
+<meta name="og:title" content="Missing Page" /><link rel="stylesheet" type="text/css" href="/a/rmccss.aspx" /><link rel="stylesheet" type="text/css" href="/a/tables.css" /><link rel="stylesheet" type="text/css" href="/a/tableBorders.css" />
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.3.min.js"></script>
+    <script language="javascript" type="text/javascript" src="/a/rmcjs.aspx">
+    </script>
+
+    
+    <script language="javascript" type="text/javascript" src="http://lsam.research.microsoft.com/am_min_0.7.0.js">
+    </script>
+    
+
+    <script type="text/javascript" src="/apps/search/js/jquery-ui.js"></script>
+    <link href="/apps/search/js/jquery-ui.css" rel="stylesheet" />
+
+    <style type="text/css">
+        .ui-autocomplete-loading {
+            background: white url("/apps/search/i/animate.gif") right center no-repeat;
+        }
+    </style>
+
+    </head>
+
+<body style="">
+    <!--NOINDEX_START-->
+
+    <div id="shareShelf">
+        <a href="javascript:rmc.Share('F');void(0);" title="Share on Facebook"><img alt="Share on Facebook" src="/a/i/c/icon-facebook-side.png"></a>
+<a href="javascript:rmc.Share('T');void(0);" title="Tweet on Twitter"><img alt="Tweet on Twitter" src="/a/i/c/icon-twitter-side.png"></a>
+<a href="javascript:rmc.Share('L');void(0);" title="Share on LinkedIn"><img alt="Share on LinkedIn" src="/a/i/c/icon-linkedin-side.png"></a>
+<a href="javascript:rmc.Share('M');void(0);" title="Share by email"><img alt="Share by email" src="/a/i/c/icon-mail-side.png"></a>
+
+    </div>
+
+
+    
+    <a name="rmcTop"></a>
+    <header>
+    <div class="center sw pr">
+        <div class="pl16">
+            <a href="/c/1400">
+                <img style="width:263px;height:30px;" class="bd1 mt15" alt="Microsoft Research" src="/a/i/c/segoe_msr_logo.png" /></a>
+        </div>
+        <div id="chP" class="pl16 mt19 fs28">
+            <div id="ctl00_Navigation2_holder"><div xmlns:ext="urn:rmc.xsl"><a href="/c/1410">Our research</a></div>
+<div xmlns:ext="urn:rmc.xsl"><a href="/c/1420">Engage with us</a></div>
+<div xmlns:ext="urn:rmc.xsl"><a href="/c/1430">Careers</a></div>
+<div xmlns:ext="urn:rmc.xsl"><a href="/c/1440">About us</a></div></div>
+
+        </div>
+        <div style="position: absolute; right: 40px; top: 0px;">
+            
+                <div class="tar fs30">
+                    <a class="tdn c3 translator" href="/c/1401">Microsoft Translator</a> <span class="c18 pl3">|</span> <select class="bd1 fs30" translate="yes" id="selLang" onchange="rmc.Translator.Translate();"></select>
+                </div>
+            
+
+            <div class="tar pr mt20" style="width:362px;height:23px;border:1px solid #000;">
+                <form method="get" id="csf" onsubmit="rmc.Search.Submit();return false;" action="/apps/search/default.aspx">
+                    <input style="width:342px;margin-right:20px;height:18px;border:none;" class="pl3 fsi c18 f2" onfocus="rmc.Search.Focus(this);" onblur="rmc.Search.Blur(this);" name="q" id="cst" type="text" value="Search Microsoft Research" />
+                    <input class="pa" style="right:5px;top:5px;" alt="Submit search" type="image" src="/a/i/c/go.png" />
+                </form>
+            </div>
+        </div>
+        <div style="height: 1px; background-color: #ccc;margin-top:11px;margin-bottom:7px;"></div>
+        <div id="chS" class="pl16 fs29">
+            <div id="ctl00_Navigation4_holder"></div>
+
+        </div>
+    </div>
+        </header>
+
+    <div class="center sw mt16">
+        <!--NOINDEX_STOP-->
+        <div id="contentArea">
+            <script type="text/javascript">
+                var requestTerm;
+
+                $("#cst").autocomplete({
+                    minLength: 2,
+                    source: function (request, response) {
+                        var data = [];
+                        var term = request.term.trim();
+
+                        requestTerm = term;
+
+                        var xr = new XMLHttpRequest();
+                        xr.abort();
+                        xr.open("GET", "/apps/search/getsuggestions.ashx?q=" + term, false);
+                        xr.send();
+
+                        if (xr.responseText != "") {
+                            var o = JSON.parse(xr.responseText);
+
+                            for (var x in o.Suggestions) {
+                                var item = {};
+                                item.value = o.Suggestions[x].Query;
+                                item.label = o.Suggestions[x].Query;
+                                data.push(item);
+                            }
+
+                            //data.sort(function (a, b) { return a.label.localeCompare(b.label) });
+                        }
+
+                        response(data);
+                    },
+                    select: function (event, ui) {
+                        var searchBox = document.getElementById("cst");
+
+                        if (searchBox != null) {
+                            $("#cst").autocomplete("disable");
+                            searchBox.value = ui.item.value;
+                        }
+
+                        $("form:first").submit();
+                    }
+                })
+                .autocomplete("instance")._renderItem = function (ul, item) {
+                    var l = item.label;
+                    var t = requestTerm;
+                    var p = l.toLowerCase().indexOf(t.toLowerCase());
+                    if (p >= 0) {
+                        var r = "";
+                        if (p > 0) {
+                            r = "<b>" + l.substring(0, p) + "</b>";
+                        }
+                        r = r + "<span style=\"color:#787878;\">" + l.substring(p, p + t.length) + "</span>";
+                        r = r + "<b>" + l.substring(p + t.length) + "</b>";
+                        l = r;
+                    }
+                    return $( "<li>" )
+                    .append( l )
+                    .appendTo( ul );
+                };
+
+
+            </script>
+            
+    <div id="mainZone" class="zone">
+        <div class="title deM">Missing Page</div>
+        <div class="compositeModule_2_1Zone">
+            <div id="" class="zone">
+                <div class="conM">
+                    <P>We're sorry, the page you requested cannot be found.</P>
+<P>To help you find the page you want, try the following troubleshooting tips.</P>
+<H3>Troubleshooting tips</H3>
+<UL>
+<LI>Verify the spelling of your address and try again. Some common address errors include: 
+<UL>
+<LI>Spelling: Make sure that all words are spelled correctly, and that numbers and letters (such as l and 1) are not switched.</LI>
+<LI>Punctuation: Make sure that all dots (.) and slashes (/) are properly placed. Check that all slashes face the proper direction (/). Remove any spaces in the address.</LI></UL></LI>
+<LI>Use the site map links on the right or the new site navigation above.</LI>
+<LI>Try search.</LI>
+<LI>If you clicked a link and your page could not be found, click the Back button in your Web browser and try your link again.</LI>
+<LI><A href="/en-us/about/contactus.aspx" target=_self>Report this as a problem</A>.</LI></UL>
+                    <p><span style="color: #323223">&nbsp;</span></p>
+                </div>
+            </div>
+            <div id="" class="zone">
+                <div class="conM "></div>
+            </div>
+            <div class="cl">
+            </div>
+        </div>
+    </div>
+    <div class="cl">
+    </div>
+    <div onclick="cvv.style.display='block';">
+        &nbsp;</div>
+    <div style="display: none;" id="cvv">
+        <span id="ctl00_ContentArea_testing"></span>
+    </div>
+
+        </div>
+        <!--NOINDEX_START-->
+        <div class="cl"></div>
+    </div>
+    <footer>
+        <div class="center sw mt21">
+            <div class="pl16" style="height:24px;">
+                <div class="dib mr12 f3 fs18 c11">Follow us</div>
+                <div class="dib vatb" style="height:20px;"><a href="/c/1470"><img class="mr20" title="Facebook") alt="Facebook" src="/a/i/c/facebook-footer.png" target="_self" border="0" width="20" height="20" /></a></div>
+<div class="dib vatb" style="height:20px;"><a href="/c/1471"><img class="mr20" title="Twitter") alt="Twitter" src="/a/i/c/twitter-footer.png" target="_self" border="0" width="20" height="20" /></a></div>
+<div class="dib vatb" style="height:20px;"><a href="/c/1472"><img class="mr20" title="YouTube") alt="YouTube" src="/a/i/c/youtube-footer.png" target="_self" border="0" width="20" height="20" /></a></div>
+<div class="dib vatb" style="height:20px;"><a href="/c/1473"><img class="mr20" title="RSS feeds") alt="RSS feeds" src="/a/i/c/rss-footer.png" target="_self" border="0" width="20" height="20" /></a></div>
+
+            </div>
+            <div style="height: 1px; background: #ccc;margin-top:20px;margin-bottom:7px;"></div>
+
+            <div id="ctl00_ctl00_holder" class="shellFooter"><div id="footer" class="center sw pr mb12 pl7"><div class="pa" style="right:165px;">&copy;2016 Microsoft</div><div class="pa" style="right:40px;margin-top:-1px;"><a href="/c/1456"><img style="display:block;" alt="Microsoft" align="" title="Microsoft" src="/a/i/c/ms-logo.png" border="0" width="88" height="19"></a></div><div class="din pl19"><a href="/c/1450">Contact us</a></div><div class="din pl19"><a href="/c/1451">Privacy &amp; cookies</a></div><div class="din pl19"><a href="/c/1452">Terms of use</a></div><div class="din pl19"><a href="/c/1453">Trademarks</a></div><div class="din pl19"><a href="/c/1454">Code of conduct</a></div><div class="din pl19"><a href="javascript:OpenFeedback();">Feedback</a></div><div class="din pl19"><a href="/c/1502">Mobile</a></div></div></div>
+
+        </div>
+    </footer>
+    <script type="text/javascript" src="http://www.microsofttranslator.com/ajax/v2/toolkit.ashx?toolbar=none"></script>
+    <script type="text/javascript">
+        rmc.AE(window, "unload", rmc.PageDepth);
+        rmc.AE(window, "scroll", rmc.MaxScroll);
+        
+        rmc.Translator.FillLanguages();
+        
+    </script>
+	<!--NOINDEX_STOP-->
+    <!-- this used to click count when feedback popup is clicked -->
+    <img id="clickCountImg" style="display: none" />
+    <div class="dn">
+        
+    </div>
+    <div id="pageShade">
+    </div>
+    
+    <script type="text/JavaScript">
+        var varSegmentation = 0;
+        var varClickTracking = 1;
+        var varCustomerTracking = 1;
+        var varAutoFirePV = 1;
+        var Route = "79500";
+        var Ctrl = "";
+        document.write("<script type='text/javascript' src='" + (window.location.protocol) + "//c.microsoft.com/ms.js'" + "'><\/script>");
+    </script> 
+    <noscript><img alt="" width="1" height="1" src="http://c.microsoft.com/trans_pixel.aspx"/></noscript> 
+    
+</body>
+</html>
